@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css (FINAL - WITH RESPONSIVE MOBILE FIXES INTEGRATED) */
 
 /* --- Configuration Variables --- */
 :root {
@@ -8,7 +8,7 @@
     --text-light: #FFFFFF;
     --text-muted: #A0A0A0;
     --transition-speed: 0.5s;
-    --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out */
+    --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* --- Base Styles & Typography --- */
@@ -22,10 +22,10 @@
 body {
     background-color: var(--bg-dark);
     color: var(--text-light);
-    overflow: hidden; /* Prevent scroll for SPA feel */
+    overflow: hidden; 
 }
 
-/* --- New Video Background Styling (Optimized for smoothness) --- */
+/* --- Video Background Styling (Optimized for smoothness) --- */
 #video-background {
     position: fixed;
     top: 0;
@@ -34,12 +34,12 @@ body {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: -3; /* Placed behind all content */
-    object-fit: cover; /* Ensures video covers the entire viewport */
-    filter: brightness(0.8); /* Slightly dim the background so text pops */
+    z-index: -3; 
+    object-fit: cover; 
+    filter: brightness(0.8); 
 }
 
-/* --- Navigation --- */
+/* --- Navigation (Desktop Default) --- */
 #main-nav {
     position: fixed;
     top: 0;
@@ -49,7 +49,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 15px 40px;
-    background: rgba(10, 10, 16, 0.8); /* Semi-transparent dark header */
+    background: rgba(10, 10, 16, 0.8); 
     backdrop-filter: blur(10px);
     z-index: 100;
     border-bottom: 2px solid var(--accent-primary);
@@ -98,7 +98,7 @@ body {
 
 .nav-links a:hover::after,
 .nav-links a.active::after,
-#minecraft-link:hover::after { /* Applied hover to external link */
+#minecraft-link:hover::after { 
     width: 100%;
     background: var(--accent-primary);
     box-shadow: 0 0 10px var(--accent-primary);
@@ -112,7 +112,7 @@ body {
 #page-container {
     width: 100vw;
     height: 100vh;
-    padding-top: 70px; /* Offset for fixed nav */
+    padding-top: 70px; 
     position: relative;
 }
 
@@ -151,7 +151,7 @@ body {
     text-shadow: 0 0 10px var(--accent-secondary), 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
-/* --- General Components --- */
+/* --- General Components (CTA/Copy Buttons) --- */
 .cta-button, .copy-button {
     background: var(--accent-primary);
     color: var(--text-light);
@@ -220,7 +220,6 @@ body {
     transform: rotate(360deg) scale(1.05);
 }
 
-/* Glitch Text Effect */
 .glitch-text {
     font-size: 5em;
     font-weight: 900;
@@ -482,4 +481,109 @@ body {
     font-size: 0.9em;
     padding: 10px 15px;
     background: var(--accent-primary);
+}
+
+
+/* ========================================================== */
+/* RESPONSIVE DESIGN (MOBILE FIXES)                 */
+/* ========================================================== */
+
+@media (max-width: 900px) {
+    /* General Reductions for Tablets/Smaller Screens */
+    .page-section {
+        padding: 30px 15px; 
+    }
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 1. NAVIGATION FIX (Stack Links for Phones) */
+    #main-nav {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 15px;
+    }
+
+    .nav-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+
+    .nav-links li {
+        margin: 0 5px;
+    }
+
+    .nav-links a {
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+    
+    /* Adjust page container padding based on new nav height */
+    #page-container {
+        /* This will adjust automatically based on content, but a fixed minimum helps */
+        padding-top: 100px; 
+    }
+    .page-section {
+        top: 100px;
+        height: calc(100% - 100px);
+    }
+    
+    /* 2. HOME SECTION FIX */
+    .glitch-text {
+        font-size: 3em; 
+        letter-spacing: 2px;
+    }
+
+    .tagline {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+
+    /* 3. SOCIAL & CONTACT GRIDS FIX (Stacking) */
+    .social-grid,
+    .contact-info-grid {
+        flex-direction: column; 
+        gap: 20px;
+        align-items: center;
+    }
+
+    .social-card,
+    .contact-card {
+        width: 90%; 
+        max-width: 350px; 
+    }
+    
+    /* 4. GAMES CARD FIX */
+    .game-cards-container {
+        gap: 25px;
+    }
+
+    .game-card {
+        width: 95%; 
+        max-width: 400px;
+        height: 350px; 
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller mobile screens (Fine tuning) */
+    .nav-links a {
+        padding: 6px 8px;
+        font-size: 0.8em;
+    }
+    .glitch-text {
+        font-size: 2.5em;
+    }
+    .hero-logo {
+        width: 100px;
+        height: 100px;
+    }
 }
