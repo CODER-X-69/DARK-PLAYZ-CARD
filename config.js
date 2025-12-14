@@ -13,9 +13,9 @@ const SITE_CONFIG = {
     tagline: "Unleashing the Night: Competitive Gaming & Creative Content.", // Displayed under the name on the Home page
     
     // --- 2. CONTACT INFORMATION ---
-    email: "business@darkplayz.com",
-    discordUsername: "DARKPLAYZ#1337",
-    instagramUsername: "@darkplayzofficial",
+    email: "Coming Soon",
+    discordUsername: "Coming Soon",
+    instagramUsername: "Coming soon",
     
     // --- 3. THEME & STYLING ---
     theme: {
@@ -29,7 +29,7 @@ const SITE_CONFIG = {
     // --- 4. NEW: EXTERNAL LINKS ---
     externalLinks: {
         // This link will be used when clicking the new 'Minecraft' navigation link
-        minecraftPage: "https://your-dedicated-minecraft-site.com" 
+        minecraftPage: "https://coder-x-69.github.io/Coming-Soon/" 
     },
 
     // --- 5. SOCIAL CONNECTIONS ---
@@ -37,22 +37,22 @@ const SITE_CONFIG = {
         { 
             name: "YouTube", 
             icon: "fab fa-youtube", 
-            link: "https://youtube.com/darkplayz" 
+            link: "https://coder-x-69.github.io/Coming-Soon/" 
         },
         { 
             name: "Instagram", 
             icon: "fab fa-instagram", 
-            link: "https://instagram.com/darkplayzofficial" 
+            link: "https://coder-x-69.github.io/Coming-Soon/" 
         },
         { 
             name: "Telegram", 
             icon: "fab fa-telegram-plane", 
-            link: "https://t.me/darkplayzchannel" 
+            link: "https://coder-x-69.github.io/Coming-Soon/" 
         },
         { 
             name: "Discord", 
             icon: "fab fa-discord", 
-            link: "https://discord.gg/darkplayzcommunity" 
+            link: "https://coder-x-69.github.io/Coming-Soon/" 
         }
     ],
 
