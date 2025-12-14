@@ -62,13 +62,13 @@ const SITE_CONFIG = {
             title: "Minecraft", 
             status: "Playing Now", 
             image: "images/minecraft.jpg", 
-            link: "#" 
+            link: "https://coder-x-69.github.io/Coming-Soon/" 
         },
         { 
             title: "Call of Duty", 
             status: "Upcoming Live Stream", 
             image: "images/cod.jpg", 
-            link: "#" 
+            link: "https://coder-x-69.github.io/Coming-Soon/" 
         }
     ]
 };
