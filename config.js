@@ -13,13 +13,11 @@ const SITE_CONFIG = {
     tagline: "Unleashing the Night: Competitive Gaming & Creative Content.", // Displayed under the name on the Home page
     
     // --- 2. CONTACT INFORMATION ---
-    // These strings are used in the Contact section and for the copy buttons.
     email: "business@darkplayz.com",
     discordUsername: "DARKPLAYZ#1337",
     instagramUsername: "@darkplayzofficial",
     
     // --- 3. THEME & STYLING ---
-    // These colors are defined in style.css, but this object shows what the theme is built around.
     theme: {
         darkBackground: "#0A0A10", // Primary dark background
         accentPrimary: "#8A2BE2",  // Electric Purple (used for primary highlights, buttons)
@@ -27,10 +25,14 @@ const SITE_CONFIG = {
         textLight: "#FFFFFF",
         textMuted: "#A0A0A0"
     },
+    
+    // --- 4. NEW: EXTERNAL LINKS ---
+    externalLinks: {
+        // This link will be used when clicking the new 'Minecraft' navigation link
+        minecraftPage: "https://your-dedicated-minecraft-site.com" 
+    },
 
-    // --- 4. SOCIAL CONNECTIONS ---
-    // Add or remove objects to update the Social section cards.
-    // 'icon' uses Font Awesome classes (e.g., 'fab fa-youtube').
+    // --- 5. SOCIAL CONNECTIONS ---
     socials: [
         { 
             name: "YouTube", 
@@ -54,21 +56,13 @@ const SITE_CONFIG = {
         }
     ],
 
-      // --- NEW: EXTERNAL LINKS ---
-    externalLinks: {
-        // This link will be used when clicking the new 'Minecraft' navigation link
-        minecraftPage: "https://your-dedicated-minecraft-site.com" 
-    },
-    
-    // --- 5. GAMES/PORTFOLIO ---
-    // Add, remove, or edit game cards here.
-    // Ensure the 'image' path matches the file name in your 'images/' folder.
+    // --- 6. GAMES/PORTFOLIO ---
     games: [
         { 
             title: "Minecraft", 
-            status: "Playing Now", // Change this to reflect current activity (e.g., "Season 3 Highlights")
+            status: "Playing Now", 
             image: "images/minecraft.jpg", 
-            link: "#" // Link to a playlist, channel, or stream archive
+            link: "#" 
         },
         { 
             title: "Call of Duty", 
@@ -76,14 +70,5 @@ const SITE_CONFIG = {
             image: "images/cod.jpg", 
             link: "#" 
         }
-        // Example of adding a third game:
-        /*
-        { 
-            title: "Valorant", 
-            status: "Competitive VODs", 
-            image: "images/valorant.jpg", // Needs a valorant.jpg file
-            link: "https://youtube.com/darkplayz/valorant" 
-        }
-        */
     ]
 };
