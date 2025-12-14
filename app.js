@@ -139,67 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    
-    // ==========================================================
-    // 4. NEW: PARTICLE ANIMATION FOR SMOOTH GAMING AESTHETIC
-    // ==========================================================
-    const particleCount = 50; 
-    const particleContainer = document.createElement('div');
-    particleContainer.id = 'particle-container';
-    document.body.appendChild(particleContainer);
-
-    let particles = [];
-
-    function createParticles() {
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random initial position
-            particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.top = `${Math.random() * 100}vh`;
-            particle.style.opacity = Math.random() * 0.5 + 0.1; 
-            
-            // Store properties for smooth, stable movement
-            particle.speedX = (Math.random() - 0.5) * 0.2; 
-            particle.speedY = (Math.random() - 0.5) * 0.2; 
-            particle.size = Math.random() * 2 + 1; 
-
-            particle.currentX = parseFloat(particle.style.left) / 100 * window.innerWidth;
-            particle.currentY = parseFloat(particle.style.top) / 100 * window.innerHeight;
-
-            particle.style.width = `${particle.size}px`;
-            particle.style.height = `${particle.size}px`;
-
-            particles.push(particle);
-            particleContainer.appendChild(particle);
-        }
-    }
-
-    function animateParticles() {
-        // RequestAnimationFrame ensures smooth, browser-synced animation
-        requestAnimationFrame(animateParticles);
-
-        particles.forEach(p => {
-            // Update position
-            p.currentX += p.speedX;
-            p.currentY += p.speedY;
-
-            // Boundary checks (wrap around the screen for continuous effect)
-            if (p.currentX > window.innerWidth) p.currentX = 0;
-            if (p.currentX < 0) p.currentX = window.innerWidth;
-            if (p.currentY > window.innerHeight) p.currentY = 0;
-            if (p.currentY < 0) p.currentY = window.innerHeight;
-
-            // Apply transformation for performance (hardware acceleration)
-            p.style.transform = `translate(${p.currentX}px, ${p.currentY}px)`;
-        });
-    }
-
-    createParticles();
-    animateParticles();
-    // End of New Particle Animation
-    
     // Initialize the first section visibility
     changeSection(currentSection);
 });
