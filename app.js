@@ -1,7 +1,7 @@
 // app.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initial Content Injection based on SITE_CONFIG
+    // 1. Initial Content Injection & Setup
     
     // Inject Tagline (Home)
     document.querySelector('.tagline').textContent = SITE_CONFIG.tagline;
@@ -41,9 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('[data-info="discord"]').textContent = SITE_CONFIG.discordUsername;
     document.querySelector('[data-info="instagram"]').textContent = SITE_CONFIG.instagramUsername;
 
+    // Set the external Minecraft link
+    const minecraftLink = document.getElementById('minecraft-link');
+    if (minecraftLink) {
+        minecraftLink.href = SITE_CONFIG.externalLinks.minecraftPage;
+    }
+
 
     // 2. SPA Navigation & Animation Handler
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinks = document.querySelectorAll('.nav-links a[data-section]'); // Only target internal links
     const pageSections = document.querySelectorAll('.page-section');
     let currentSection = 'home'; // Start on home
 
@@ -56,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Deactivate Current Section (Exit Animation)
         if (currentSectionEl) {
             currentSectionEl.classList.remove('active');
-            // Wait for exit transition (0.5s CSS) then hide
             setTimeout(() => {
                 currentSectionEl.classList.add('hidden');
             }, 500); 
@@ -65,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Activate New Section (Entrance Animation)
         if (newSectionEl) {
             newSectionEl.classList.remove('hidden');
-            // Delay activation slightly to ensure CSS applies transition
             setTimeout(() => {
                 newSectionEl.classList.add('active');
             }, 50); 
@@ -80,9 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('active');
             }
         });
+        
+        // Ensure external links do not get 'active' class (only internal SPA links)
+        minecraftLink.classList.remove('active');
     }
 
-    // Set up click handlers for navigation
+    // Set up click handlers for internal navigation
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -116,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 successMessage = 'Discord Username Copied!';
             } else if (target === 'instagram') {
                 window.open(`https://instagram.com/${SITE_CONFIG.instagramUsername.substring(1)}`, '_blank');
-                return; // Prevent copy action for Instagram "View Profile"
+                return; 
             }
 
             navigator.clipboard.writeText(contentToCopy).then(() => {
@@ -131,8 +138,68 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+    
+    
+    // ==========================================================
+    // 4. NEW: PARTICLE ANIMATION FOR SMOOTH GAMING AESTHETIC
+    // ==========================================================
+    const particleCount = 50; 
+    const particleContainer = document.createElement('div');
+    particleContainer.id = 'particle-container';
+    document.body.appendChild(particleContainer);
 
+    let particles = [];
+
+    function createParticles() {
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random initial position
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.opacity = Math.random() * 0.5 + 0.1; 
+            
+            // Store properties for smooth, stable movement
+            particle.speedX = (Math.random() - 0.5) * 0.2; 
+            particle.speedY = (Math.random() - 0.5) * 0.2; 
+            particle.size = Math.random() * 2 + 1; 
+
+            particle.currentX = parseFloat(particle.style.left) / 100 * window.innerWidth;
+            particle.currentY = parseFloat(particle.style.top) / 100 * window.innerHeight;
+
+            particle.style.width = `${particle.size}px`;
+            particle.style.height = `${particle.size}px`;
+
+            particles.push(particle);
+            particleContainer.appendChild(particle);
+        }
+    }
+
+    function animateParticles() {
+        // RequestAnimationFrame ensures smooth, browser-synced animation
+        requestAnimationFrame(animateParticles);
+
+        particles.forEach(p => {
+            // Update position
+            p.currentX += p.speedX;
+            p.currentY += p.speedY;
+
+            // Boundary checks (wrap around the screen for continuous effect)
+            if (p.currentX > window.innerWidth) p.currentX = 0;
+            if (p.currentX < 0) p.currentX = window.innerWidth;
+            if (p.currentY > window.innerHeight) p.currentY = 0;
+            if (p.currentY < 0) p.currentY = window.innerHeight;
+
+            // Apply transformation for performance (hardware acceleration)
+            p.style.transform = `translate(${p.currentX}px, ${p.currentY}px)`;
+        });
+    }
+
+    createParticles();
+    animateParticles();
+    // End of New Particle Animation
+    
     // Initialize the first section visibility
-    // Ensures 'home' is active on load, which is set in HTML/CSS, but can be reinforced here.
     changeSection(currentSection);
 });
