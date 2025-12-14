@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK PLAYZ - Premium Gaming Content</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="animated-background"></div>
+
+    <nav id="main-nav">
+        <img src="images/logo.jpg" alt="DARK PLAYZ Logo" class="nav-logo">
+        <ul class="nav-links">
+            <li><a href="#home" data-section="home" class="active">Home</a></li>
+            <li><a href="#about" data-section="about">About Me</a></li>
+            <li><a href="#social" data-section="social">Connect</a></li>
+            <li><a href="#games" data-section="games">Portfolio</a></li>
+            <li><a href="#contact" data-section="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main id="page-container">
+        
+        <section id="home" class="page-section active">
+            <div class="hero-content">
+                <img src="images/logo.jpg" alt="DARK PLAYZ Logo" class="hero-logo">
+                <h1 class="glitch-text" data-text="DARK PLAYZ">DARK PLAYZ</h1>
+                <p class="tagline"></p> <button class="cta-button" data-scroll-to="#games">Explore My World</button>
+            </div>
+        </section>
+
+        <section id="about" class="page-section hidden">
+            <h2 class="section-title">About The Creator</h2>
+            <div class="about-content">
+                <p>I'm a content creator who plays games and uploads videos on YouTube and content on Instagram. My focus is on **competitive gameplay** and providing deep analysis, paired with high-quality, engaging highlight reels. I'm dedicated to building a positive community where we can all share a passion for high-skill gaming and epic moments.</p>
+                <p>Expect content that is both challenging and fun. Ready to jump into the action?</p>
+            </div>
+        </section>
+
+        <section id="social" class="page-section hidden">
+            <h2 class="section-title">Join The Community</h2>
+            <div class="social-grid">
+                </div>
+        </section>
+
+        <section id="games" class="page-section hidden">
+            <h2 class="section-title">The Games I Master</h2>
+            <div class="game-cards-container">
+                </div>
+        </section>
+
+        <section id="contact" class="page-section hidden">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Business Email</h3>
+                    <p data-info="email"></p>
+                    <button class="copy-button" data-copy-target="email">Copy Email</button>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-discord"></i>
+                    <h3>Discord</h3>
+                    <p data-info="discord"></p>
+                    <button class="copy-button" data-copy-target="discord">Copy Username</button>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p data-info="instagram"></p>
+                    <button class="copy-button" data-copy-target="instagram">View Profile</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

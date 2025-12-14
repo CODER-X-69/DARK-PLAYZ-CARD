@@ -1,0 +1,502 @@
+/* style.css */
+
+/* --- Configuration Variables --- */
+:root {
+    --bg-dark: #0A0A10;
+    --accent-primary: #8A2BE2; /* Electric Purple */
+    --accent-secondary: #00FFFF; /* Neon Aqua */
+    --text-light: #FFFFFF;
+    --text-muted: #A0A0A0;
+    --transition-speed: 0.5s;
+    --cubic-bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out */
+}
+
+/* --- Base Styles & Typography --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow: hidden; /* Prevent scroll for SPA feel */
+}
+
+/* --- Animated Background (Subtle Matrix/Particles) --- */
+#animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use a repeating linear-gradient to simulate subtle neon vertical lines/rain */
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 255, 0.03), /* Neon Aqua subtle line */
+        rgba(0, 0, 0, 0) 1px,
+        rgba(0, 0, 0, 0) 100px
+    );
+    opacity: 0.1;
+    pointer-events: none;
+    animation: background-move 120s linear infinite;
+    z-index: -1;
+}
+
+@keyframes background-move {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 10000px; /* Slow vertical scroll */
+    }
+}
+
+/* --- Navigation --- */
+#main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(10, 10, 16, 0.8); /* Semi-transparent dark header */
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 2px solid var(--accent-primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-logo {
+    height: 40px;
+    margin-right: auto;
+    border-radius: 50%;
+    border: 2px solid var(--accent-secondary);
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    position: relative;
+    transition: color 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-secondary);
+    transform: translateX(-50%);
+    transition: width 0.3s var(--cubic-bezier), background 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.nav-links a.active {
+    color: var(--accent-primary);
+}
+
+/* --- Page/Section Transitions --- */
+#page-container {
+    width: 100vw;
+    height: 100vh;
+    padding-top: 70px; /* Offset for fixed nav */
+    position: relative;
+}
+
+.page-section {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 70px);
+    padding: 50px;
+    overflow-y: auto; /* Scrollable content inside the view */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: 
+        opacity var(--transition-speed) var(--cubic-bezier), 
+        transform var(--transition-speed) var(--cubic-bezier),
+        visibility var(--transition-speed);
+}
+
+.page-section.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* --- Section Titles --- */
+.section-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--accent-secondary);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    /* Neon glow effect */
+    text-shadow: 0 0 10px var(--accent-secondary), 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+/* --- General Components --- */
+.cta-button, .copy-button {
+    background: var(--accent-primary);
+    color: var(--text-light);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s var(--cubic-bezier);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover, .copy-button:hover {
+    background: var(--accent-secondary);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px var(--accent-secondary);
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+    transform: skewX(-20deg);
+}
+
+.cta-button:hover::after {
+    left: 100%;
+}
+
+/* --- 1. HOME Section Specifics --- */
+#home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--accent-primary);
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
+    transition: transform 0.5s var(--cubic-bezier);
+}
+
+.hero-logo:hover {
+    transform: rotate(360deg) scale(1.05);
+}
+
+/* Glitch Text Effect */
+.glitch-text {
+    font-size: 5em;
+    font-weight: 900;
+    color: var(--text-light);
+    text-transform: uppercase;
+    position: relative;
+    letter-spacing: 5px;
+    animation: neon-flicker 1.5s infinite alternate;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-primary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--accent-secondary);
+    clip: rect(85px, 450px, 100px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.tagline {
+    font-size: 1.5em;
+    color: var(--accent-secondary);
+    margin-bottom: 40px;
+    text-shadow: 0 0 5px var(--accent-secondary);
+    animation: fade-in-up 1s ease-out backwards 0.5s;
+}
+
+/* Keyframe Animations */
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--accent-primary), 0 0 15px var(--accent-primary);
+    }
+    20%, 24%, 55% {
+        opacity: 0.8;
+        text-shadow: none;
+    }
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(42px, 9999px, 50px, 0); }
+    10% { clip: rect(33px, 9999px, 70px, 0); }
+    /* ... more random clips ... */
+    100% { clip: rect(25px, 9999px, 80px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(10px, 9999px, 20px, 0); }
+    25% { clip: rect(70px, 9999px, 90px, 0); }
+    /* ... more random clips ... */
+    100% { clip: rect(50px, 9999px, 60px, 0); }
+}
+
+/* --- 2. ABOUT ME Section Specifics --- */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    animation: fade-up 0.8s ease-out backwards;
+}
+
+.about-content p:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.about-content strong {
+    color: var(--accent-primary);
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+}
+
+/* --- 3. SOCIAL CONNECTIONS Section Specifics --- */
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.social-card {
+    background: rgba(138, 43, 226, 0.1); /* Subtle purple background */
+    border: 2px solid var(--accent-primary);
+    border-radius: 10px;
+    padding: 30px 40px;
+    text-align: center;
+    width: 200px;
+    transition: all 0.4s var(--cubic-bezier);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+.social-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: rgba(0, 255, 255, 0.1); /* Hover to neon aqua */
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 25px var(--accent-secondary);
+}
+
+.social-card i {
+    font-size: 3em;
+    color: var(--accent-primary);
+    margin-bottom: 15px;
+    transition: color 0.4s var(--cubic-bezier);
+}
+
+.social-card:hover i {
+    color: var(--accent-secondary);
+}
+
+.social-card h3 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+/* --- 4. GAMES/PORTFOLIO Section Specifics --- */
+.game-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.game-card {
+    width: 350px;
+    height: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transition: transform 0.4s var(--cubic-bezier), box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(138, 43, 226, 0.8);
+}
+
+.game-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--cubic-bezier);
+}
+
+.game-card:hover .game-card-img {
+    transform: scale(1.1);
+}
+
+.game-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    padding: 20px;
+    transform: translateY(10px);
+    transition: transform 0.4s var(--cubic-bezier);
+}
+
+.game-card:hover .game-card-overlay {
+    transform: translateY(0);
+}
+
+.game-card-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.game-card-status {
+    display: inline-block;
+    background: var(--accent-secondary);
+    color: var(--bg-dark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9em;
+    animation: status-pulse 1.5s infinite alternate;
+}
+
+@keyframes status-pulse {
+    from {
+        box-shadow: 0 0 5px var(--accent-secondary);
+        opacity: 1;
+    }
+    to {
+        box-shadow: 0 0 15px var(--accent-secondary), 0 0 25px rgba(0, 255, 255, 0.5);
+        opacity: 0.9;
+    }
+}
+
+/* --- 5. CONTACT Section Specifics --- */
+.contact-info-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-primary);
+    border-radius: 10px;
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+    transition: all 0.4s var(--cubic-bezier);
+}
+
+.contact-card:hover {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.contact-card i {
+    font-size: 2.5em;
+    color: var(--accent-primary);
+    margin-bottom: 15px;
+}
+
+.contact-card h3 {
+    font-size: 1.3em;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    color: var(--accent-secondary);
+    font-weight: 600;
+    margin-bottom: 20px;
+    word-break: break-all;
+}
+
+.copy-button {
+    font-size: 0.9em;
+    padding: 10px 15px;
+    background: var(--accent-primary);
+}
