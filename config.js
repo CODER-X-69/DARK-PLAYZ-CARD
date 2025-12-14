@@ -54,6 +54,12 @@ const SITE_CONFIG = {
         }
     ],
 
+      // --- NEW: EXTERNAL LINKS ---
+    externalLinks: {
+        // This link will be used when clicking the new 'Minecraft' navigation link
+        minecraftPage: "https://your-dedicated-minecraft-site.com" 
+    },
+    
     // --- 5. GAMES/PORTFOLIO ---
     // Add, remove, or edit game cards here.
     // Ensure the 'image' path matches the file name in your 'images/' folder.
