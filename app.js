@@ -1,4 +1,4 @@
-// app.js
+// app.js (FINAL CODE WITH GAME CARD LINK FIX)
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initial Content Injection & Setup
@@ -20,19 +20,29 @@ document.addEventListener('DOMContentLoaded', () => {
         socialGrid.appendChild(card);
     });
 
-    // Inject Game Cards
+    // Inject Game Cards (FIXED LOGIC)
     const gameCardsContainer = document.querySelector('.game-cards-container');
     SITE_CONFIG.games.forEach(game => {
         const card = document.createElement('div');
         card.classList.add('game-card');
-        card.onclick = () => window.open(game.link, '_blank'); // Example action
-        card.innerHTML = `
+        
+        // --- FIX: Create an explicit anchor tag for the external link ---
+        const linkElement = document.createElement('a');
+        linkElement.href = game.link; // Use the actual link from config.js
+        linkElement.target = '_blank'; // Opens in a new tab
+        
+        // Move all visual content inside the anchor tag
+        linkElement.innerHTML = `
             <img src="${game.image}" alt="${game.title}" class="game-card-img">
             <div class="game-card-overlay">
                 <span class="game-card-status">${game.status}</span>
                 <h3 class="game-card-title">${game.title}</h3>
             </div>
         `;
+
+        card.appendChild(linkElement);
+        // --- END FIX ---
+        
         gameCardsContainer.appendChild(card);
     });
 
