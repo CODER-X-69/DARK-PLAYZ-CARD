@@ -25,61 +25,21 @@ body {
     overflow: hidden; /* Prevent scroll for SPA feel */
 }
 
-/* --- Animated Background (Enhanced Gaming Particles & Grid) --- */
-#animated-background {
+/* --- New Video Background Styling (Optimized for smoothness) --- */
+#video-background {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    /* Subtle Grid Pattern Overlay */
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 255, 255, 0.02) 0,
-        rgba(0, 0, 0, 0) 1px,
-        rgba(0, 0, 0, 0) 60px
-    ),
-    repeating-linear-gradient(
-        90deg,
-        rgba(138, 43, 226, 0.02) 0,
-        rgba(0, 0, 0, 0) 1px,
-        rgba(0, 0, 0, 0) 60px
-    );
-    opacity: 0.15; /* Increased opacity slightly for better visibility */
-    pointer-events: none;
-    animation: background-move 120s linear infinite;
-    z-index: -1;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -3; /* Placed behind all content */
+    object-fit: cover; /* Ensures video covers the entire viewport */
+    filter: brightness(0.8); /* Slightly dim the background so text pops */
 }
 
-@keyframes background-move {
-    from { background-position: 0 0; }
-    to { background-position: 0 6000px; } /* Slower vertical scroll */
-}
-
-/* --- Particle Container & Styling (Managed by JS) --- */
-#particle-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -2; /* Below the grid background */
-}
-
-.particle {
-    position: absolute;
-    /* width/height defined by JS, but base style here */
-    background-color: var(--accent-secondary); /* Neon Aqua */
-    border-radius: 50%;
-    opacity: 0;
-    filter: blur(1px); /* Gives a soft, ethereal glow */
-    /* Optimized transform usage for smooth animation */
-    transition: transform 0.05s linear; 
-}
-
-
-/* --- Navigation (Remaining sections are the same as before) --- */
+/* --- Navigation --- */
 #main-nav {
     position: fixed;
     top: 0;
@@ -89,7 +49,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 15px 40px;
-    background: rgba(10, 10, 16, 0.8);
+    background: rgba(10, 10, 16, 0.8); /* Semi-transparent dark header */
     backdrop-filter: blur(10px);
     z-index: 100;
     border-bottom: 2px solid var(--accent-primary);
@@ -138,16 +98,11 @@ body {
 
 .nav-links a:hover::after,
 .nav-links a.active::after,
-#minecraft-link:hover { /* Added hover for external link */
+#minecraft-link:hover::after { /* Applied hover to external link */
     width: 100%;
     background: var(--accent-primary);
     box-shadow: 0 0 10px var(--accent-primary);
 }
-#minecraft-link {
-    color: var(--text-light);
-    /* External link should also look like a nav link */
-}
-
 
 .nav-links a.active {
     color: var(--accent-primary);
@@ -157,7 +112,7 @@ body {
 #page-container {
     width: 100vw;
     height: 100vh;
-    padding-top: 70px;
+    padding-top: 70px; /* Offset for fixed nav */
     position: relative;
 }
 
