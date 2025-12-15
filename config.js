@@ -29,7 +29,7 @@ const SITE_CONFIG = {
     // --- 4. NEW: EXTERNAL LINKS ---
     externalLinks: {
         // This link will be used when clicking the new 'Minecraft' navigation link
-        minecraftPage: "https://coder-x-69.github.io/Coming-Soon/" 
+        minecraftPage: "https://coderhub.lovable.app/" 
     },
 
     // --- 5. SOCIAL CONNECTIONS ---
